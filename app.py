@@ -5,7 +5,7 @@ import streamlit as st
 import numpy as np
 import random as random
 import altair as alt
-import matplotlib.pyplot as plt
+import matplotlib as plt
 from io import StringIO
 from vega_datasets import data
 # Header
