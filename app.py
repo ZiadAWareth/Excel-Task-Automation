@@ -52,7 +52,7 @@ def Execute(path_in):
         sheet_payment_df['Comission'][index]=comm
 
     sheet1_2_df = pandas.DataFrame(columns=['  ','Net Amount', 'Number of Orders', 'Total Comission',' ','Net Amount (PGW)','Number of Orders(PGW)','Total Comission(PGW)'])
-    sheet1_2_df = sheet1_2_df.concat([{}]*4, ignore_index=True)
+    sheet1_2_df = sheet1_2_df.append([{}]*4, ignore_index=True)
     sheet1_2_df['  '][0]="Amazon Pay"
     sheet1_2_df['  '][1]="Gedia "
     sheet1_2_df['  '][2]="FawryPay "
