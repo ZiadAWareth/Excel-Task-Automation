@@ -187,6 +187,7 @@ with tab2:
             st.dataframe(report_df)
     # Cache the dataframe so it's only loaded once
             @st.cache_data
+            # First DataFrame
             def load_data():
                 return pandas.DataFrame(
                     {
@@ -197,6 +198,7 @@ with tab2:
                 )
             df = load_data()
 
+            # Second DataFrame
             def load_data2():
                 return pandas.DataFrame(
                     {
@@ -206,6 +208,18 @@ with tab2:
                     }
                 )
             df2 = load_data2()
+
+            # Third DataFrame
+            def load_data3():
+                return pandas.DataFrame(
+                    {
+                        "Gateways": ["Amazon","GEIDEA","Fawry"],
+                        "DAF": [ file_df['Total Comission'][0],file_df['Total Comission'][1],file_df['Total Comission'][2]],
+                        "Others": [file_df['Total Comission(PGW)'][0],file_df['Total Comission(PGW)'][1],file_df['Total Comission(PGW)'][2]],
+                    }
+                )
+            df3 = load_data3()
+            
             ########################  THE AMOUNT  ###########################
             st.header('The Amount')
             # Set the figure size and background color
@@ -275,13 +289,13 @@ with tab2:
             st.header('Sum Of Commissions')
             fig2, ax = plt.subplots(figsize=(12, 4))
             fig2.patch.set_facecolor('none')
-            x = range(len(df))
+            x = range(len(df3))
             width = 0.35
-            ax.bar(x, df["Amount"], width, label="Amount")
-            ax.bar([i + width for i in x], df["Total Amount"], width, label="Total Amount")
+            ax.bar(x, df3["DAF"], width, label="DAF")
+            ax.bar([i + width for i in x], df3["Others"], width, label="Others")
             ax.set_xticks([i + width/2 for i in x])
             ax.set_xticklabels(df["Gateways"])
-            ax.set_ylabel("Amount")
+            ax.set_ylabel("DAF")
             ax.set_title("Grouped Bar Chart")
             ax.legend()
             ax.set_facecolor('none')
