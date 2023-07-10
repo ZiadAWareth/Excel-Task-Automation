@@ -187,7 +187,7 @@ with tab2:
             st.dataframe(report_df)
     # Cache the dataframe so it's only loaded once
             @st.cache_data
-            def load_data():
+            # def load_data():
                 # return pandas.DataFrame(
                 #     {
                 #         "Gateways": ["Fawry","Amazon","GEIDEA"],
