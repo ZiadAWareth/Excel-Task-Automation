@@ -187,67 +187,67 @@ with tab2:
             st.dataframe(report_df)
     # Cache the dataframe so it's only loaded once
             @st.cache_data
-            # def load_data():
-                # return pandas.DataFrame(
-                #     {
-                #         "Gateways": ["Fawry","Amazon","GEIDEA"],
-                #         "DAF": [ file_df['Net Amount'][0],file_df['Net Amount'][1],file_df['Net Amount'][2]],
-                #         "Others": [file_df['Net Amount (PGW)'][0],file_df['Net Amount (PGW)'][1],file_df['Net Amount (PGW)'][2]],
-                #     }
-                # )
-            # df = load_data()
+            def load_data():
+                return pandas.DataFrame(
+                    {
+                        "Gateways": ["Amazon","GEIDEA","Fawry"],
+                        "DAF": [ file_df['Net Amount'][0],file_df['Net Amount'][1],file_df['Net Amount'][2]],
+                        "Others": [file_df['Net Amount (PGW)'][0],file_df['Net Amount (PGW)'][1],file_df['Net Amount (PGW)'][2]],
+                    }
+                )
+            df = load_data()
 
             def load_data2():
                 return pandas.DataFrame(
                     {
-                        "Gateways": ["Fawry","Amazon","GEIDEA"],
+                        "Gateways": ["Amazon","GEIDEA","Fawry"],
                         "DAF": [ file_df['Number of Orders'][0],file_df['Number of Orders'][1],file_df['Number of Orders'][2]],
                         "Others": [file_df['Number of Orders(PGW)'][0],file_df['Number of Orders(PGW)'][1],file_df['Number of Orders(PGW)'][2]],
                     }
                 )
             df2 = load_data2()
-            # ########################  THE AMOUNT  ###########################
-            # st.header('The Amount')
-            # # Set the figure size and background color
-            # fig, ax = plt.subplots(figsize=(12, 4))
-            # fig.patch.set_facecolor('none')
-            # # Set the positions of the bars on the x-axis
-            # x = range(len(df))
-            # # Set the width of each bar
-            # width = 0.35
-            # # Plot the bars for "Amount"
-            # ax.bar(x, df["DAF"], width, label="DAF")
-            # # Plot the bars for "Total Amount"
-            # ax.bar([i + width for i in x], df["Others"], width, label="Others")
-            # # Set the x-axis labels
-            # ax.set_xticks([i + width/2 for i in x])
-            # ax.set_xticklabels(df["Gateways"])
-            # # Set the y-axis label
-            # ax.set_ylabel("Amount")
-            # # Set the chart title
-            # ax.set_title("Grouped Bar Chart")
-            # # Add a legend
-            # ax.legend()
-            # # Set the background color to transparent
-            # ax.set_facecolor('none')
-            # # Set the color of the axis labels, title, and legend to white
-            # ax.spines['bottom'].set_color('white')
-            # ax.spines['left'].set_color('white')
-            # ax.spines['top'].set_color('white')
-            # ax.spines['right'].set_color('white')
-            # ax.yaxis.label.set_color('white')
-            # ax.xaxis.label.set_color('white')
-            # ax.title.set_color('white')
-            # ax.legend().get_texts()[0].set_color("white")
-            # ax.legend().get_texts()[1].set_color("white")
-            # ax.tick_params(axis='x', colors='white')
-            # ax.tick_params(axis='y', colors='white')
-            # #Show the chart
-            # st.pyplot(plt)
+            ########################  THE AMOUNT  ###########################
+            st.header('The Amount')
+            # Set the figure size and background color
+            fig, ax = plt.subplots(figsize=(12, 4))
+            fig.patch.set_facecolor('none')
+            # Set the positions of the bars on the x-axis
+            x = range(len(df))
+            # Set the width of each bar
+            width = 0.35
+            # Plot the bars for "Amount"
+            ax.bar(x, df["DAF"], width, label="DAF")
+            # Plot the bars for "Total Amount"
+            ax.bar([i + width for i in x], df["Others"], width, label="Others")
+            # Set the x-axis labels
+            ax.set_xticks([i + width/2 for i in x])
+            ax.set_xticklabels(df["Gateways"])
+            # Set the y-axis label
+            ax.set_ylabel("Amount")
+            # Set the chart title
+            ax.set_title("Grouped Bar Chart")
+            # Add a legend
+            ax.legend()
+            # Set the background color to transparent
+            ax.set_facecolor('none')
+            # Set the color of the axis labels, title, and legend to white
+            ax.spines['bottom'].set_color('white')
+            ax.spines['left'].set_color('white')
+            ax.spines['top'].set_color('white')
+            ax.spines['right'].set_color('white')
+            ax.yaxis.label.set_color('white')
+            ax.xaxis.label.set_color('white')
+            ax.title.set_color('white')
+            ax.legend().get_texts()[0].set_color("white")
+            ax.legend().get_texts()[1].set_color("white")
+            ax.tick_params(axis='x', colors='white')
+            ax.tick_params(axis='y', colors='white')
+            #Show the chart
+            st.pyplot(plt)
             ########################  NUMBER OF ORDERS  ###########################
             st.header('Number Of Orders')
-            fig2, ax = plt.subplots(figsize=(12, 4))
-            fig2.patch.set_facecolor('none')
+            fig, ax = plt.subplots(figsize=(12, 4))
+            fig.patch.set_facecolor('none')
             x = range(len(df2))
             width = 0.35
             ax.bar(x, df2["DAF"], width, label="DAF")
@@ -273,8 +273,8 @@ with tab2:
 
             ########################  TOTAL COMMISSION  ###########################
             st.header('Sum Of Commissions')
-            fig, ax = plt.subplots(figsize=(12, 4))
-            fig.patch.set_facecolor('none')
+            fig2, ax = plt.subplots(figsize=(12, 4))
+            fig2.patch.set_facecolor('none')
             x = range(len(df))
             width = 0.35
             ax.bar(x, df["Amount"], width, label="Amount")
