@@ -188,13 +188,13 @@ with tab2:
     # Cache the dataframe so it's only loaded once
             @st.cache_data
             def load_data():
-                return pandas.DataFrame(
-                    {
-                        "Gateways": ["Fawry","Amazon","GEIDEA"],
-                        "DAF": [ file_df['Net Amount'][0],file_df['Net Amount'][1],file_df['Net Amount'][2]],
-                        "Others": [file_df['Net Amount (PGW)'][0],file_df['Net Amount (PGW)'][1],file_df['Net Amount (PGW)'][2]],
-                    }
-                )
+                # return pandas.DataFrame(
+                #     {
+                #         "Gateways": ["Fawry","Amazon","GEIDEA"],
+                #         "DAF": [ file_df['Net Amount'][0],file_df['Net Amount'][1],file_df['Net Amount'][2]],
+                #         "Others": [file_df['Net Amount (PGW)'][0],file_df['Net Amount (PGW)'][1],file_df['Net Amount (PGW)'][2]],
+                #     }
+                # )
             df = load_data()
 
             def load_data2():
@@ -269,7 +269,7 @@ with tab2:
             ax.legend().get_texts()[1].set_color("white")
             ax.tick_params(axis='x', colors='white')
             ax.tick_params(axis='y', colors='white')
-            st.pyplot(fig2)
+            st.pyplot(plt)
 
             ########################  TOTAL COMMISSION  ###########################
             st.header('Sum Of Commissions')
