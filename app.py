@@ -191,8 +191,8 @@ with tab2:
                 return pandas.DataFrame(
                     {
                         "Gateways": ["Fawry","Amazon","GEIDEA"],
-                        "Total Amount": [file_df['Net Amount'][2],file_df['Net Amount'][0],file_df['Net Amount'][1]],
-                        "Amount": [file_df['Net Amount (PGW)'][2],file_df['Net Amount'][0],file_df['Net Amount'][1]],
+                        "DAF": [ file_df['Net Amount'][0],file_df['Net Amount'][1],file_df['Net Amount'][2]],
+                        "Others": [file_df['Net Amount (PGW)'][0],file_df['Net Amount (PGW)'][1],file_df['Net Amount (PGW)'][2]],
 
                     }
                 )
