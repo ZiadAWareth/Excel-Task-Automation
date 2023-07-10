@@ -205,7 +205,6 @@ with tab2:
                         "Others": [file_df['Number of Orders(PGW)'][0],file_df['Number of Orders(PGW)'][1],file_df['Number of Orders(PGW)'][2]],
                     }
                 )
-            df = load_data()
             df2 = load_data2()
             ########################  THE AMOUNT  ###########################
             st.header('The Amount')
