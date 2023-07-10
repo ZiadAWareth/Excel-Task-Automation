@@ -195,7 +195,7 @@ with tab2:
                 #         "Others": [file_df['Net Amount (PGW)'][0],file_df['Net Amount (PGW)'][1],file_df['Net Amount (PGW)'][2]],
                 #     }
                 # )
-            df = load_data()
+            # df = load_data()
 
             def load_data2():
                 return pandas.DataFrame(
