@@ -206,6 +206,7 @@ with tab2:
                     }
                 )
             df = load_data()
+            df2 = load_data2()
             ########################  THE AMOUNT  ###########################
             st.header('The Amount')
             # Set the figure size and background color
@@ -248,12 +249,12 @@ with tab2:
             st.header('Number Of Orders')
             fig, ax = plt.subplots(figsize=(12, 4))
             fig.patch.set_facecolor('none')
-            x = range(len(df))
+            x = range(len(df2))
             width = 0.35
-            ax.bar(x, df["DAF"], width, label="DAF")
-            ax.bar([i + width for i in x], df["Others"], width, label="Others")
+            ax.bar(x, df2["DAF"], width, label="DAF")
+            ax.bar([i + width for i in x], df2["Others"], width, label="Others")
             ax.set_xticks([i + width/2 for i in x])
-            ax.set_xticklabels(df["Gateways"])
+            ax.set_xticklabels(df2["Gateways"])
             ax.set_ylabel("DAF")
             ax.set_title("Grouped Bar Chart")
             ax.legend()
