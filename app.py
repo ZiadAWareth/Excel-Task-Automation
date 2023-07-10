@@ -164,7 +164,7 @@ with tab1:
                 print(uploaded_file.name)
     # Execute file on Button Click
     csv = "None"
-
+    agree = st.checkbox('I agree')
     if st.button('Execute'):
         file_df= Execute(uploaded_file)
         button_pressed=True
