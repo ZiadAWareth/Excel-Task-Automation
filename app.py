@@ -247,8 +247,8 @@ with tab2:
             st.pyplot(plt)
             ########################  NUMBER OF ORDERS  ###########################
             st.header('Number Of Orders')
-            fig, ax = plt.subplots(figsize=(12, 4))
-            fig.patch.set_facecolor('none')
+            fig2, ax = plt.subplots(figsize=(12, 4))
+            fig2.patch.set_facecolor('none')
             x = range(len(df2))
             width = 0.35
             ax.bar(x, df2["DAF"], width, label="DAF")
@@ -270,7 +270,7 @@ with tab2:
             ax.legend().get_texts()[1].set_color("white")
             ax.tick_params(axis='x', colors='white')
             ax.tick_params(axis='y', colors='white')
-            st.pyplot(plt)
+            st.pyplot(fig2)
 
             ########################  TOTAL COMMISSION  ###########################
             st.header('Sum Of Commissions')
