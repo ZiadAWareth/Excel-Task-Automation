@@ -190,13 +190,21 @@ with tab2:
             def load_data():
                 return pandas.DataFrame(
                     {
-                        "Gateways": ["Fawry","Amazon","GEIDEA"],
+                        "Gateways": ["Fawry","Amazon","GEIDEA","TOTAL"],
                         "DAF": [ file_df['Net Amount'][0],file_df['Net Amount'][1],file_df['Net Amount'][2]],
                         "Others": [file_df['Net Amount (PGW)'][0],file_df['Net Amount (PGW)'][1],file_df['Net Amount (PGW)'][2]],
-
                     }
                 )
-            # st.checkbox("Use container width", value=False, key="use_container_width")
+            df = load_data()
+
+            # def load_data2():
+            #     return pandas.DataFrame(
+            #         {
+            #             "Gateways": ["Fawry","Amazon","GEIDEA","TOTAL"],
+            #             "DAF": [ file_df['Net Amount'][0],file_df['Net Amount (PGW)'][0]],
+            #             "Others": [file_df['Number of Orders'][0],file_df['Number of Orders(PGW)'][0]],
+            #         }
+            #     )
             df = load_data()
             ########################  THE AMOUNT  ###########################
             st.header('The Amount')
@@ -208,9 +216,9 @@ with tab2:
             # Set the width of each bar
             width = 0.35
             # Plot the bars for "Amount"
-            ax.bar(x, df["Amount"], width, label="Amount")
+            ax.bar(x, df["DAF"], width, label="DAF")
             # Plot the bars for "Total Amount"
-            ax.bar([i + width for i in x], df["Total Amount"], width, label="Total Amount")
+            ax.bar([i + width for i in x], df["Others"], width, label="Others")
             # Set the x-axis labels
             ax.set_xticks([i + width/2 for i in x])
             ax.set_xticklabels(df["Gateways"])
