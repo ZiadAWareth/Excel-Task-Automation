@@ -197,14 +197,14 @@ with tab2:
                 )
             df = load_data()
 
-            # def load_data2():
-            #     return pandas.DataFrame(
-            #         {
-            #             "Gateways": ["Fawry","Amazon","GEIDEA","TOTAL"],
-            #             "DAF": [ file_df['Net Amount'][0],file_df['Net Amount (PGW)'][0]],
-            #             "Others": [file_df['Number of Orders'][0],file_df['Number of Orders(PGW)'][0]],
-            #         }
-            #     )
+            def load_data2():
+                return pandas.DataFrame(
+                    {
+                        "Gateways": ["Fawry","Amazon","GEIDEA"],
+                        "DAF": [ file_df['Number of Orders'][0],file_df['Number of Orders'][1],file_df['Number of Orders'][2]],
+                        "Others": [file_df['Number of Orders(PGW)'][0],file_df['Number of Orders(PGW)'][1],file_df['Number of Orders(PGW)'][2]],
+                    }
+                )
             df = load_data()
             ########################  THE AMOUNT  ###########################
             st.header('The Amount')
@@ -250,11 +250,11 @@ with tab2:
             fig.patch.set_facecolor('none')
             x = range(len(df))
             width = 0.35
-            ax.bar(x, df["Amount"], width, label="Amount")
-            ax.bar([i + width for i in x], df["Total Amount"], width, label="Total Amount")
+            ax.bar(x, df["DAF"], width, label="DAF")
+            ax.bar([i + width for i in x], df["Others"], width, label="Others")
             ax.set_xticks([i + width/2 for i in x])
             ax.set_xticklabels(df["Gateways"])
-            ax.set_ylabel("Amount")
+            ax.set_ylabel("DAF")
             ax.set_title("Grouped Bar Chart")
             ax.legend()
             ax.set_facecolor('none')
