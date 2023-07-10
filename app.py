@@ -164,7 +164,7 @@ with tab1:
                 print(uploaded_file.name)
     # Execute file on Button Click
     csv = "None"
-    multiple = st.checkbox('Multiple')
+    multiple = st.checkbox('Multiple Days')
     # if multiple:
     if st.button('Execute'):
         file_df= Execute(uploaded_file)
