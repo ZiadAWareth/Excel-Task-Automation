@@ -190,7 +190,7 @@ with tab2:
             def load_data():
                 return pandas.DataFrame(
                     {
-                        "Gateways": ["Fawry","Amazon","GEIDEA","TOTAL"],
+                        "Gateways": ["Fawry","Amazon","GEIDEA"],
                         "DAF": [ file_df['Net Amount'][0],file_df['Net Amount'][1],file_df['Net Amount'][2]],
                         "Others": [file_df['Net Amount (PGW)'][0],file_df['Net Amount (PGW)'][1],file_df['Net Amount (PGW)'][2]],
                     }
