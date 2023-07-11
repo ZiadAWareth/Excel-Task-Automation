@@ -288,10 +288,9 @@ def Generating_Tabs(all_reports):
     number_of_reports = len(all_reports)-1
     for i  in range(number_of_reports):
         generate_tab_content(all_reports[i],tab_labels[i])
-
+multiple = st.checkbox("Multiple")
 if st.button('Execute'):
     # GET MULTIPLE FLAG FROM CHECKBOX
-        multiple = st.checkbox("Multiple")
         all_reports=get_report(uploaded_file, multiple)
         file_df = get_report(uploaded_file, multiple)[len(get_report(uploaded_file,multiple))-1]
         button_pressed=True
