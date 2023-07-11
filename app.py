@@ -71,7 +71,8 @@ def get_report(file,multiple):
       big_report_df.append(new_row, ignore_index=True)
       big_report_df = big_report_df.append(x, ignore_index=True)
       index =index+1
-    return big_report_df
+    list_of_reports.append(big_report_df)
+    return list_of_reports
 # File Execution
 def Execute(sheet_payment_df,sheet1_amazon_df,sheet1_fawry_df,sheet1_gedia_df,file):
     # reading stuff
@@ -224,9 +225,9 @@ if uploaded_file is not None:
 csv = "None"
 multiple = st.checkbox("Multiple")
 
-def Generating_Tabs(final_file):
+def Generating_Tabs(all_reports):
     # Generate the tab labels
-    tab_labels = [f"Tab {i+1}" for i in range(len(file_df)-1)]
+    tab_labels = [f"Tab {i+1}" for i in range(len(all_reports)-1)]
     # Generate the tab content
     def generate_tab_content(tab_label):
         st.header(tab_label)
@@ -240,7 +241,8 @@ def Generating_Tabs(final_file):
 if st.button('Execute'):
     # GET MULTIPLE FLAG FROM CHECKBOX
         multiple = True 
-        file_df = get_report(uploaded_file, multiple)
+        all_reports=get_report(uploaded_file, multiple)
+        file_df = get_report(uploaded_file, multiple)[len(get_report(uploaded_file,multiple))-1]
         button_pressed=True
         st.write(" File Executed Succesfully")
         def convert_df(df):
@@ -255,7 +257,7 @@ if st.button('Execute'):
        "text/csv",
        key='download-csv'
     )
-        Generating_Tabs(file_df) 
+        Generating_Tabs(all_reports) 
 
 # with tab2:
 #         if(button_pressed):
