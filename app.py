@@ -12,7 +12,8 @@ from vega_datasets import data
 st.title('Excel Task Automation')
 st.markdown("              ")
 
-def generate_tab_content(file):
+def generate_tab_content(file,label):
+        st.header(label)
         if(button_pressed):
             st.dataframe(file)
     # Cache the dataframe so it's only loaded once
@@ -285,7 +286,7 @@ def Generating_Tabs(all_reports):
 # Create the tabs
     tabs = st.tabs(tab_labels)
     # Display the content for each tab
-    for i in range(len(all_reports)-1):
+    for i,tab  in range(len(all_reports)-1):
         generate_tab_content(all_reports[i])
 
 if st.button('Execute'):
