@@ -75,7 +75,11 @@ def get_report(file,multiple):
       sheet1_fawry_df = pandas.read_excel(sheet1_file,sheet_name='f')
       sheet1_amazon_df = pandas.read_excel(sheet1_file,sheet_name='a')
       sheet1_gedia_df = pandas.read_excel(sheet1_file,sheet_name='g')
-      return  Execute(sheet_payment_df,sheet1_amazon_df,sheet1_fawry_df,sheet1_gedia_df,file)
+      list_of_reports_contain_one_rep=[]
+      list_of_reports_contain_one_rep.append(Execute(sheet_payment_df,sheet1_amazon_df,sheet1_fawry_df,sheet1_gedia_df,file))
+
+      list_of_reports_contain_one_rep.append(Execute(sheet_payment_df,sheet1_amazon_df,sheet1_fawry_df,sheet1_gedia_df,file))
+      return  list_of_reports_contain_one_rep
 
   
   else :
@@ -199,16 +203,16 @@ def Execute(sheet_payment_df,sheet1_amazon_df,sheet1_fawry_df,sheet1_gedia_df,fi
     sheet1_2_df['Number of Orders(PGW)'][1]=actual_geida_count
     sheet1_2_df['Total Comission(PGW)'][1]=actual_geida_com
 
-    def get_amazon_num(value):
-        return float(value)* 0.0095 +1.5
-
+    def get_amazon_num(value):  
+        return float(value.replace(',',''))* 0.0095 +1.5
+   
     sheet1_amazon_df['Count'] = 1
     sheet1_amazon_df['Comission']={}
     for index, row in sheet1_amazon_df.iterrows():
         sheet1_amazon_df['Comission'][index]= get_amazon_num(row['Amount'])
     sum=0
     for index , row in sheet1_amazon_df.iterrows():
-        sum=sum+row['Amount']
+        sum=sum+float(row['Amount'].replace(',',''))
 
 
     sheet1_2_df['Gross Amount (PGW)'][0]=sum
