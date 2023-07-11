@@ -69,14 +69,21 @@ def generate_tab_content(file,label):
             st.pyplot(plt)
 # global  list_of_reports
 def get_report(file,multiple):
-  sheet1_file= file
-  sheet_payment_df = pandas.read_excel(sheet1_file,sheet_name='paymentsByFilter')
-  sheet1_fawry_df = pandas.read_excel(sheet1_file,sheet_name='F')
-  sheet1_amazon_df = pandas.read_excel(sheet1_file,sheet_name='A')
-  sheet1_gedia_df = pandas.read_excel(sheet1_file,sheet_name='G')
-  if (multiple==False):
-   return  Execute(sheet_payment_df,sheet1_amazon_df,sheet1_fawry_df,sheet1_gedia_df,file)
+  if(multiple== False):
+      sheet1_file= file
+      sheet_payment_df = pandas.read_excel(sheet1_file,sheet_name='paymentsByFilter')
+      sheet1_fawry_df = pandas.read_excel(sheet1_file,sheet_name='f')
+      sheet1_amazon_df = pandas.read_excel(sheet1_file,sheet_name='a')
+      sheet1_gedia_df = pandas.read_excel(sheet1_file,sheet_name='g')
+      return  Execute(sheet_payment_df,sheet1_amazon_df,sheet1_fawry_df,sheet1_gedia_df,file)
+
+  
   else :
+    sheet1_file= file
+    sheet_payment_df = pandas.read_excel(sheet1_file,sheet_name='paymentsByFilter')
+    sheet1_fawry_df = pandas.read_excel(sheet1_file,sheet_name='F')
+    sheet1_amazon_df = pandas.read_excel(sheet1_file,sheet_name='A')
+    sheet1_gedia_df = pandas.read_excel(sheet1_file,sheet_name='G')
     uniques = set()
     for index , row in sheet1_fawry_df.iterrows():
       if(row['Order Date'] not in uniques):
@@ -290,7 +297,7 @@ def Generating_Tabs(all_reports):
         generate_tab_content(all_reports[i],tab_labels[i])
 multiple = st.checkbox("Multiple")
 if st.button('Execute'):
-    # GET MULTIPLE FLAG FROM CHECKBOX
+    # GET MULTIPLE FLAG FROM CHECKBOX      
         all_reports=get_report(uploaded_file, multiple)
         file_df = get_report(uploaded_file, multiple)[len(get_report(uploaded_file,multiple))-1]
         button_pressed=True
