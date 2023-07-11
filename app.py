@@ -67,7 +67,6 @@ def generate_tab_content(file,label):
             ax.tick_params(axis='y', colors='white')
             #Show the chart
             st.pyplot(plt)
-
 # global  list_of_reports
 def get_report(file,multiple):
   sheet1_file= file
@@ -286,7 +285,8 @@ def Generating_Tabs(all_reports):
     # Create the tabs
     tabs = st.tabs(tab_labels)
     # Display the content for each tab
-    for i,tab  in range(len(all_reports)-1):
+    number_of_reports = len(all_reports)-1
+    for i  in range(number_of_reports):
         generate_tab_content(all_reports[i],tab_labels[i])
 
 if st.button('Execute'):
@@ -364,5 +364,4 @@ if st.button('Execute'):
             # ax.tick_params(axis='x', colors='white')
             # ax.tick_params(axis='y', colors='white')
             # st.pyplot(plt)
-
 
