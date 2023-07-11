@@ -283,11 +283,11 @@ def Generating_Tabs(all_reports):
     # Generate the tab labels
     tab_labels = [f"Dashboard {i+1}" for i in range(len(all_reports)-1)]
 
-# Create the tabs
+    # Create the tabs
     tabs = st.tabs(tab_labels)
     # Display the content for each tab
     for i,tab  in range(len(all_reports)-1):
-        generate_tab_content(all_reports[i])
+        generate_tab_content(all_reports[i],tab_labels[i])
 
 if st.button('Execute'):
     # GET MULTIPLE FLAG FROM CHECKBOX
