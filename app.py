@@ -150,7 +150,7 @@ def Execute(sheet_payment_df,sheet1_amazon_df,sheet1_fawry_df,sheet1_gedia_df,fi
             return 28.5
         else: return x
 
-# puttin pgw numbers
+# putting pgw numbers
     for index, row in sheet_payment_df.iterrows():
         pgw = get_pgw_value(sheet_payment_df['totalAmount'][index],sheet_payment_df['walletAmount'][index])
         provider = row['provider']
@@ -281,7 +281,9 @@ multiple = st.checkbox("Multiple")
 def Generating_Tabs(all_reports):
     # Generate the tab labels
     tab_labels = [f"Dashboard {i+1}" for i in range(len(all_reports)-1)]
-    # Generate the tab content
+
+# Create the tabs
+    tabs = st.tabs(tab_labels)
     # Display the content for each tab
     for i in range(len(all_reports)-1):
         generate_tab_content(all_reports[i])
