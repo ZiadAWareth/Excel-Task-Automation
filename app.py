@@ -205,10 +205,10 @@ def Execute(sheet_payment_df,sheet1_amazon_df,sheet1_fawry_df,sheet1_gedia_df,fi
     sheet1_amazon_df['Count'] = 1
     sheet1_amazon_df['Comission']={}
     for index, row in sheet1_amazon_df.iterrows():
-        sheet1_amazon_df['Comission'][index]= get_amazon_num(float(row['Amount']))
+        sheet1_amazon_df['Comission'][index]= get_amazon_num(row['Amount'])
     sum=0
     for index , row in sheet1_amazon_df.iterrows():
-        sum=sum+float(row['Amount'])
+        sum=sum+row['Amount']
 
 
     sheet1_2_df['Gross Amount (PGW)'][0]=sum
