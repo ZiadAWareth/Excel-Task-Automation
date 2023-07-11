@@ -85,9 +85,9 @@ def get_report(file,multiple):
   else :
     sheet1_file= file
     sheet_payment_df = pandas.read_excel(sheet1_file,sheet_name='paymentsByFilter')
-    sheet1_fawry_df = pandas.read_excel(sheet1_file,sheet_name='F')
-    sheet1_amazon_df = pandas.read_excel(sheet1_file,sheet_name='A')
-    sheet1_gedia_df = pandas.read_excel(sheet1_file,sheet_name='G')
+    sheet1_fawry_df = pandas.read_excel(sheet1_file,sheet_name='f')
+    sheet1_amazon_df = pandas.read_excel(sheet1_file,sheet_name='a')
+    sheet1_gedia_df = pandas.read_excel(sheet1_file,sheet_name='g')
     uniques = set()
     for index , row in sheet1_fawry_df.iterrows():
       if(row['Order Date'] not in uniques):
