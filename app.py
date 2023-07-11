@@ -229,14 +229,68 @@ def Generating_Tabs(all_reports):
     # Generate the tab labels
     tab_labels = [f"Tab {i+1}" for i in range(len(all_reports)-1)]
     # Generate the tab content
-    def generate_tab_content(tab_label):
-        st.header(tab_label)
-        st.write(f"This is the content for {tab_label}")
+    def generate_tab_content(i):
+        # ///////////////////////////////////////////////
+        if(button_pressed):
+                st.dataframe(file_df)
+        # Cache the dataframe so it's only loaded once
+                @st.cache_data
+                def load_data():
+                
+                    return pandas.DataFrame(
+                        {
+                            "Gateways": ["Fawry","Amazon","GEIDEA"],
+                            "Total Amount": [file_df['Gross Amount'][2],file_df['Gross Amount'][0],file_df['Gross Amount'][1]],
+                            "Amount": [file_df['Gross Amount (PGW)'][2],file_df['Gross Amount'][0],file_df['Gross Amount'][1]],
+
+                        }
+                    )
+                # st.checkbox("Use container width", value=False, key="use_container_width")
+                df = load_data()
+                ########################  THE AMOUNT  ###########################
+                st.header('The Amount')
+                # Set the figure size and background color
+                fig, ax = plt.subplots(figsize=(12, 4))
+                fig.patch.set_facecolor('none')
+                # Set the positions of the bars on the x-axis
+                x = range(len(df))
+                # Set the width of each bar
+                width = 0.35
+                # Plot the bars for "Amount"
+                ax.bar(x, df["Amount"], width, label="Amount")
+                # Plot the bars for "Total Amount"
+                ax.bar([i + width for i in x], df["Total Amount"], width, label="Total Amount")
+                # Set the x-axis labels
+                ax.set_xticks([i + width/2 for i in x])
+                ax.set_xticklabels(df["Gateways"])
+                # Set the y-axis label
+                ax.set_ylabel("Amount")
+                # Set the chart title
+                ax.set_title("Grouped Bar Chart")
+                # Add a legend
+                ax.legend()
+                # Set the background color to transparent
+                ax.set_facecolor('none')
+                # Set the color of the axis labels, title, and legend to white
+                ax.spines['bottom'].set_color('white')
+                ax.spines['left'].set_color('white')
+                ax.spines['top'].set_color('white')
+                ax.spines['right'].set_color('white')
+                ax.yaxis.label.set_color('white')
+                ax.xaxis.label.set_color('white')
+                ax.title.set_color('white')
+                ax.legend().get_texts()[0].set_color("white")
+                ax.legend().get_texts()[1].set_color("white")
+                ax.tick_params(axis='x', colors='white')
+                ax.tick_params(axis='y', colors='white')
+                #Show the chart
+                st.pyplot(plt)
+        # ///////////////////////////////////////////////
     # Create the tabs
     tabs = st.tabs(tab_labels)
     # Display the content for each tab
     for i, tab in enumerate(tabs):
-        generate_tab_content(tab_labels[i])
+        generate_tab_content(i)
 
 if st.button('Execute'):
     # GET MULTIPLE FLAG FROM CHECKBOX
@@ -259,61 +313,61 @@ if st.button('Execute'):
     )
         Generating_Tabs(all_reports) 
 
-# with tab2:
-#         if(button_pressed):
-#             st.dataframe(file_df)
-#     # Cache the dataframe so it's only loaded once
-#             @st.cache_data
-#             def load_data():
+# def generate_tab_content(i):
+    #     if(button_pressed):
+    #         st.dataframe(file_df)
+    # # Cache the dataframe so it's only loaded once
+    #         @st.cache_data
+    #         def load_data():
              
-#                 return pandas.DataFrame(
-#                     {
-#                         "Gateways": ["Fawry","Amazon","GEIDEA"],
-#                         "Total Amount": [file_df['Gross Amount'][2],file_df['Gross Amount'][0],file_df['Gross Amount'][1]],
-#                         "Amount": [file_df['Gross Amount (PGW)'][2],file_df['Gross Amount'][0],file_df['Gross Amount'][1]],
+    #             return pandas.DataFrame(
+    #                 {
+    #                     "Gateways": ["Fawry","Amazon","GEIDEA"],
+    #                     "Total Amount": [file_df['Gross Amount'][2],file_df['Gross Amount'][0],file_df['Gross Amount'][1]],
+    #                     "Amount": [file_df['Gross Amount (PGW)'][2],file_df['Gross Amount'][0],file_df['Gross Amount'][1]],
 
-#                     }
-#                 )
-#             # st.checkbox("Use container width", value=False, key="use_container_width")
-#             df = load_data()
-            # ########################  THE AMOUNT  ###########################
-            # st.header('The Amount')
-            # # Set the figure size and background color
-            # fig, ax = plt.subplots(figsize=(12, 4))
-            # fig.patch.set_facecolor('none')
-            # # Set the positions of the bars on the x-axis
-            # x = range(len(df))
-            # # Set the width of each bar
-            # width = 0.35
-            # # Plot the bars for "Amount"
-            # ax.bar(x, df["Amount"], width, label="Amount")
-            # # Plot the bars for "Total Amount"
-            # ax.bar([i + width for i in x], df["Total Amount"], width, label="Total Amount")
-            # # Set the x-axis labels
-            # ax.set_xticks([i + width/2 for i in x])
-            # ax.set_xticklabels(df["Gateways"])
-            # # Set the y-axis label
-            # ax.set_ylabel("Amount")
-            # # Set the chart title
-            # ax.set_title("Grouped Bar Chart")
-            # # Add a legend
-            # ax.legend()
-            # # Set the background color to transparent
-            # ax.set_facecolor('none')
-            # # Set the color of the axis labels, title, and legend to white
-            # ax.spines['bottom'].set_color('white')
-            # ax.spines['left'].set_color('white')
-            # ax.spines['top'].set_color('white')
-            # ax.spines['right'].set_color('white')
-            # ax.yaxis.label.set_color('white')
-            # ax.xaxis.label.set_color('white')
-            # ax.title.set_color('white')
-            # ax.legend().get_texts()[0].set_color("white")
-            # ax.legend().get_texts()[1].set_color("white")
-            # ax.tick_params(axis='x', colors='white')
-            # ax.tick_params(axis='y', colors='white')
-            # #Show the chart
-            # st.pyplot(plt)
+    #                 }
+    #             )
+    #         # st.checkbox("Use container width", value=False, key="use_container_width")
+    #         df = load_data()
+    #         ########################  THE AMOUNT  ###########################
+    #         st.header('The Amount')
+    #         # Set the figure size and background color
+    #         fig, ax = plt.subplots(figsize=(12, 4))
+    #         fig.patch.set_facecolor('none')
+    #         # Set the positions of the bars on the x-axis
+    #         x = range(len(df))
+    #         # Set the width of each bar
+    #         width = 0.35
+    #         # Plot the bars for "Amount"
+    #         ax.bar(x, df["Amount"], width, label="Amount")
+    #         # Plot the bars for "Total Amount"
+    #         ax.bar([i + width for i in x], df["Total Amount"], width, label="Total Amount")
+    #         # Set the x-axis labels
+    #         ax.set_xticks([i + width/2 for i in x])
+    #         ax.set_xticklabels(df["Gateways"])
+    #         # Set the y-axis label
+    #         ax.set_ylabel("Amount")
+    #         # Set the chart title
+    #         ax.set_title("Grouped Bar Chart")
+    #         # Add a legend
+    #         ax.legend()
+    #         # Set the background color to transparent
+    #         ax.set_facecolor('none')
+    #         # Set the color of the axis labels, title, and legend to white
+    #         ax.spines['bottom'].set_color('white')
+    #         ax.spines['left'].set_color('white')
+    #         ax.spines['top'].set_color('white')
+    #         ax.spines['right'].set_color('white')
+    #         ax.yaxis.label.set_color('white')
+    #         ax.xaxis.label.set_color('white')
+    #         ax.title.set_color('white')
+    #         ax.legend().get_texts()[0].set_color("white")
+    #         ax.legend().get_texts()[1].set_color("white")
+    #         ax.tick_params(axis='x', colors='white')
+    #         ax.tick_params(axis='y', colors='white')
+    #         #Show the chart
+    #         st.pyplot(plt)
             ########################  NUMBER OF ORDERS  ###########################
             # st.header('Number Of Orders')
             # fig, ax = plt.subplots(figsize=(12, 4))
