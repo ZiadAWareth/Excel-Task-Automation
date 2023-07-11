@@ -227,10 +227,10 @@ multiple = st.checkbox("Multiple")
 
 def Generating_Tabs(all_reports):
     # Generate the tab labels
-    tab_labels = [f"Tab {i+1}" for i in range(len(all_reports)-1)]
+    tab_labels = [f"Dashboard {i+1}" for i in range(len(all_reports)-1)]
     # Generate the tab content
     # Display the content for each tab
-    for i, tab in enumerate(len(all_reports)):
+    for i in enumerate(len(all_reports)-1):
         generate_tab_content(all_reports[i])
 
 if st.button('Execute'):
