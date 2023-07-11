@@ -230,7 +230,7 @@ def Generating_Tabs(all_reports):
     tab_labels = [f"Dashboard {i+1}" for i in range(len(all_reports)-1)]
     # Generate the tab content
     # Display the content for each tab
-    for i in len(all_reports)-1:
+    for i in range(len(all_reports)-1):
         generate_tab_content(all_reports[i])
 
 if st.button('Execute'):
