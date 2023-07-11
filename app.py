@@ -203,16 +203,25 @@ def Execute(sheet_payment_df,sheet1_amazon_df,sheet1_fawry_df,sheet1_gedia_df,fi
     sheet1_2_df['Number of Orders(PGW)'][1]=actual_geida_count
     sheet1_2_df['Total Comission(PGW)'][1]=actual_geida_com
 
-    def get_amazon_num(value):  
+    def get_amazon_num_for_string(value):  
         return float(value.replace(',',''))* 0.0095 +1.5
-   
+    def get_amazon_num_for_floats(value):  
+        return float(value)* 0.0095 +1.5
+
     sheet1_amazon_df['Count'] = 1
     sheet1_amazon_df['Comission']={}
     for index, row in sheet1_amazon_df.iterrows():
-        sheet1_amazon_df['Comission'][index]= get_amazon_num(row['Amount'])
+        if(type(row['Amount'])==str):
+            sheet1_amazon_df['Comission'][index]= get_amazon_num_for_string(row['Amount'])
+        else:
+            sheet1_amazon_df['Comission'][index]= get_amazon_num_for_floats(row['Amount'])
+
     sum=0
     for index , row in sheet1_amazon_df.iterrows():
-        sum=sum+float(row['Amount'].replace(',',''))
+        if(type(row['Amount'])==str):
+            sum=sum+float(row['Amount'].replace(',',''))
+        else: 
+            sum=sum+row['Amount']
 
 
     sheet1_2_df['Gross Amount (PGW)'][0]=sum
