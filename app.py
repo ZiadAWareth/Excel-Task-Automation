@@ -276,7 +276,7 @@ if uploaded_file is not None:
             print(uploaded_file.name)
 # Execute file on Button Click
 csv = "None"
-multiple = st.checkbox("Multiple")
+
 
 def Generating_Tabs(all_reports):
     # Generate the tab labels
@@ -291,7 +291,7 @@ def Generating_Tabs(all_reports):
 
 if st.button('Execute'):
     # GET MULTIPLE FLAG FROM CHECKBOX
-        multiple = True 
+        multiple = st.checkbox("Multiple")
         all_reports=get_report(uploaded_file, multiple)
         file_df = get_report(uploaded_file, multiple)[len(get_report(uploaded_file,multiple))-1]
         button_pressed=True
